@@ -8,74 +8,149 @@ Chart.register(ArcElement);
 
 function Today() {
 
-  const [count, setCount] = useState({
-              sleep: 0,
-              work: 2,
-              project: 0,
-              veg: 0,
-              exercise: 0,
-              friends: 0,
-              family: 0,
-              partner: 0,
-              goOut: 0
-  });
+  // const [count, setCount] = useState({
+  //             sleep: 0,
+  //             work: 2,
+  //             project: 0,
+  //             veg: 0,
+  //             exercise: 0,
+  //             friends: 0,
+  //             family: 0,
+  //             partner: 0,
+  //             goOut: 0
+  // });
 
   const [chartState, setChartState] = useState({
       labels: ['Sleep','Work','Project','Veg','Exercise','Friends','Family','Partner','Go Out'],
       datasets: [ { label: 'TODAY',
                     backgroundColor: ['#B21F00','#C9DE00','#2FDE00','#00A6B4','#6800B4'],
                     hoverBackgroundColor: ['#501800','#4B5000','#175000','#003350','#35014F'],
-                    data: [count.sleep, count.work, count.project, count.veg, count.exercise, count.friends, count.family, count.partner, count.goOut]
+                    data: [0,0,0,0,0,0,0,0,0]
                 } ]
-    });
+      });
+      
+  const [fakeState, setFakeState] = useState(0);  
 
   const addSleep = () => {
-    let newCount = count;
-    let newSleep = newCount.sleep+1;
-
-    newCount = {...newCount, sleep: newSleep}
-    setCount(newCount);
-
     let newChartState = chartState;
+    let newSleep = newChartState.datasets[0].data[0] + 1;
+
     newChartState.datasets[0].data.splice(0, 1, newSleep);
-    console.log('newchartState: ', newChartState);
+    setChartState(newChartState);
+
+    //TODO WHY does this work? When a 2nd state, such as fakeState, is set, DOM DOES re render
+    //if not (if these next two lines are commented) it DOES NOT RERENDER
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    // console.log('chartState.datasets[0].data:', chartState.datasets[0].data);
+   // console.log('fakeState:', fakeState);
+  }
+  const addWork = () => {
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newWork = newChartState.datasets[0].data[1] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(1, 1, newWork);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
 
     setChartState(newChartState);
   }
-  const addWork = () => {
-    let newCount = count;
-    newCount = {...newCount, work: newCount.work+1}
-    setCount(newCount);
-  }
   const addProject = () => {
-    count.project++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newProject = newChartState.datasets[0].data[2] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(2, 1, newProject);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
   }
   const addVeg = () => {
-    count.veg++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newVeg = newChartState.datasets[0].data[3] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(3, 1, newVeg);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
   }
   const addExercise = () => {
-    count.exercise++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newExercise = newChartState.datasets[0].data[4] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(4, 1, newExercise);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+    
+    setChartState(newChartState);
   }
   const addFriends = () => {
-    count.friends++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newFriends = newChartState.datasets[0].data[5] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(5, 1, newFriends);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
   }
   const addFamily = () => {
-    count.family++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newFamily = newChartState.datasets[0].data[6] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(6, 1, newFamily);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
   }
   const addPartner = () => {
-    count.partner++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newPartner = newChartState.datasets[0].data[7] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(7, 1, newPartner);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
   }
   const addGoOut = () => {
-    count.goOut++;
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newGoOut = newChartState.datasets[0].data[8] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(8, 1, newGoOut);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+    
+    setChartState(newChartState);
   }
 
   const showTotals = () => {
-    console.log("counts:", count);
     console.log('chart state:', chartState);
   }
 
   return (
     <div>
+        <p>fakeState:{JSON.stringify(fakeState)}</p>
+        <p>chartState.datasets[0].data:{JSON.stringify(chartState.datasets[0].data)}</p>
         <Pie
           data={chartState} redraw
           options={{
@@ -93,15 +168,15 @@ function Today() {
 
       <h1>TODAY</h1>
       
-      <Button onClick={addSleep}>Sleep: {count.sleep} / {chartState.datasets[0].data[0]}</Button>
-      <Button onClick={addWork}>Work</Button>
-      <Button onClick={addProject}>Project</Button>
-      <Button onClick={addVeg}>Veg</Button>
-      <Button onClick={addExercise}>Exercise</Button>
-      <Button onClick={addFriends}>Friends</Button>
-      <Button onClick={addFamily}>Family</Button>
-      <Button onClick={addPartner}>Partner</Button>
-      <Button onClick={addGoOut}>Go Out</Button>
+      <Button onClick={addSleep}>Sleep: {chartState.datasets[0].data[0]}</Button>
+      <Button onClick={addWork}>Work: {chartState.datasets[0].data[1]}</Button>
+      <Button onClick={addProject}>Project: {chartState.datasets[0].data[2]}</Button>
+      <Button onClick={addVeg}>Veg: {chartState.datasets[0].data[3]}</Button>
+      <Button onClick={addExercise}>Exercise: {chartState.datasets[0].data[4]}</Button>
+      <Button onClick={addFriends}>Friends: {chartState.datasets[0].data[5]}</Button>
+      <Button onClick={addFamily}>Family: {chartState.datasets[0].data[6]}</Button>
+      <Button onClick={addPartner}>Partner: {chartState.datasets[0].data[7]}</Button>
+      <Button onClick={addGoOut}>Go Out: {chartState.datasets[0].data[8]}</Button>
 
       <br>
       </br> 
