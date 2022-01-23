@@ -9,7 +9,7 @@ Chart.register(ArcElement);
 Chart.register(ChartDataLabels);
 
 function Today() {
-
+  
   const colors = {
     sleep: '#01295F', work: '#437F97', 
     project: '#849324', exercise: '#CAA71B', veg: '#FFC800', goOut: '#FF7B0F',
