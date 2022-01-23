@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,100;1,200&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
+ 
+* {
+  font-family: Roboto;
+}
+
 html,
 body,
 #react-root {
@@ -5,8 +11,10 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  background-color: #fffbef;
+
+  padding-top: 70px;
 }
 
 img {
@@ -25,14 +33,11 @@ Container
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
-
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
-  border-width: 1px 1px 3px;
-  border-radius: 4px;
-  background-color: #00acb0;
+  border: none;
+  background-color: #bcc6c7;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -76,6 +81,13 @@ Button
   color: #008183;
 }
 
+.btnLogger {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+}
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -109,4 +121,30 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+
+.starRatingStar {
+  width: 45px;
+  padding: 2px;
+}
+
+.starRating {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* --------------------------------------------------------------------------------
+Flex Containers
+-------------------------------------------------------------------------------- */
+
+.flexCenter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
 }
