@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import Button from 'react-bootstrap/Button';
 import {Line, Pie} from 'react-chartjs-2'
 import {Chart, ArcElement} from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import StarRating from '../StarRating/StarRating';
+import { useDispatch, useSelector } from 'react-redux';
 Chart.register(ArcElement);
 Chart.register(ChartDataLabels);
 
 function Today() {
+
+  const user = useSelector(store => store.user);
   
   const colors = {
     sleep: '#01295F', work: '#437F97', 
@@ -29,6 +32,14 @@ function Today() {
       });
       
   const [fakeState, setFakeState] = useState(0);  
+
+  const dispatch = useDispatch();
+
+  useEffect(  () => {
+    dispatch({ type: 'GET_TODAYS_ENTRY', payload: {user_id: user.id} });
+
+  }, []);
+  
 
   const almostNothing = () => {
     let newChartState = chartState;
