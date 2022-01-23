@@ -21,6 +21,7 @@ function Today() {
   // });
 
   const [chartState, setChartState] = useState({
+      thing: ["t","h","i","n","g"],
       labels: ['Sleep','Work','Project','Veg','Exercise','Friends','Family','Partner','Go Out'],
       datasets: [ { label: 'TODAY',
                     backgroundColor: ['#B21F00','#C9DE00','#2FDE00','#00A6B4','#6800B4'],
@@ -30,6 +31,17 @@ function Today() {
       });
       
   const [fakeState, setFakeState] = useState(0);  
+
+  const almostNothing = () => {
+    let newChartState = chartState;
+    let newThingLetter = newChartState.thing[0] + "blablablabla";
+
+    newChartState.thing.splice(0, 1, newThingLetter);
+
+    setChartState({...chartState, thing: newChartState.thing});
+    console.log('newChartState', newChartState);
+
+  }
 
   const addSleep = () => {
     let newChartState = chartState;
@@ -139,7 +151,7 @@ function Today() {
 
     let newFakeState = fakeState + 1;
     setFakeState(newFakeState);
-    
+
     setChartState(newChartState);
   }
 
@@ -149,8 +161,8 @@ function Today() {
 
   return (
     <div>
-        <p>fakeState:{JSON.stringify(fakeState)}</p>
-        <p>chartState.datasets[0].data:{JSON.stringify(chartState.datasets[0].data)}</p>
+        <p>thing:{JSON.stringify(chartState.thing)}</p>
+        {/* <p>chartState.datasets[0].data:{JSON.stringify(chartState.datasets[0].data)}</p> */}
         <Pie
           data={chartState} redraw
           options={{
@@ -168,6 +180,7 @@ function Today() {
 
       <h1>TODAY</h1>
       
+      <Button onClick={almostNothing}>Thing Button</Button>
       <Button onClick={addSleep}>Sleep: {chartState.datasets[0].data[0]}</Button>
       <Button onClick={addWork}>Work: {chartState.datasets[0].data[1]}</Button>
       <Button onClick={addProject}>Project: {chartState.datasets[0].data[2]}</Button>
