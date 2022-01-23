@@ -3,30 +3,42 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 import Button from 'react-bootstrap/Button';
 import {Line, Pie} from 'react-chartjs-2'
 import {Chart, ArcElement} from 'chart.js'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 Chart.register(ArcElement);
-
+Chart.register(ChartDataLabels);
 
 function Today() {
 
-  // const [count, setCount] = useState({
-  //             sleep: 0,
-  //             work: 2,
-  //             project: 0,
-  //             veg: 0,
-  //             exercise: 0,
-  //             friends: 0,
-  //             family: 0,
-  //             partner: 0,
-  //             goOut: 0
-  // });
+  // pink and purple
+  // const colors = {
+  //   sleep: '#AE2EE8', work: '#6919B3', 
+  //   project: '#7930F2', exercise: '#4020D3', veg: '#5C53DF', goOut: '#202BAC',
+  //   friends: '#4069F2', family: '#0C54C0', partner: '#2C93EB' 
+  // }
+
+  // //range 1
+  // const colors = {
+  //   sleep: '#003D3A', work: '#218380', 
+  //   project: '#85FFC7', exercise: '#8F2D56', veg: '#C6FFF6', goOut: '#BD0E23',
+  //   friends: '#CF6629', family: '#FFB43B', partner: '#FFDD35' 
+  // }
+
+  //70s rainbow
+  const colors = {
+    sleep: '#01295F', work: '#437F97', 
+    project: '#849324', exercise: '#CAA71B', veg: '#FFB30F', goOut: '#FF7B0F',
+    friends: '#CE1218', family: '#882134', partner: '#522A5C' 
+  }
 
   const [chartState, setChartState] = useState({
       thing: ["t","h","i","n","g"],
-      labels: ['Sleep','Work','Project','Veg','Exercise','Friends','Family','Partner','Go Out'],
+      // todo delete ^ - for test only
+      labels: ['Sleep','Work','Project','Exercise','Veg','Go Out','Friends','Family','Partner'],
       datasets: [ { label: 'TODAY',
-                    backgroundColor: ['#B21F00','#C9DE00','#2FDE00','#00A6B4','#6800B4'],
-                    hoverBackgroundColor: ['#501800','#4B5000','#175000','#003350','#35014F'],
-                    data: [0,0,0,0,0,0,0,0,0]
+                    backgroundColor: [colors.sleep, colors.work, colors.project, colors.exercise, colors.veg, colors.goOut, colors.friends, colors.family, colors.partner],
+                    hoverBackgroundColor: [colors.sleep, colors.work, colors.project, colors.exercise, colors.veg, colors.goOut, colors.friends, colors.family, colors.partner],
+                    data: [0,0,0,0,0,0,0,0,0],
+                    datalabels: { color: '#000'}
                 } ]
       });
       
@@ -82,60 +94,25 @@ function Today() {
 
     setChartState(newChartState);
   }
-  const addVeg = () => {
-    let newChartState = chartState;
-    //todo need to not hardcode .data[whatever]
-    let newVeg = newChartState.datasets[0].data[3] + 1;
-    //todo need to not hardcode .splice(firstNumber
-    newChartState.datasets[0].data.splice(3, 1, newVeg);
-
-    let newFakeState = fakeState + 1;
-    setFakeState(newFakeState);
-
-    setChartState(newChartState);
-  }
   const addExercise = () => {
     let newChartState = chartState;
     //todo need to not hardcode .data[whatever]
-    let newExercise = newChartState.datasets[0].data[4] + 1;
+    let newExercise = newChartState.datasets[0].data[3] + 1;
     //todo need to not hardcode .splice(firstNumber
-    newChartState.datasets[0].data.splice(4, 1, newExercise);
+    newChartState.datasets[0].data.splice(3, 1, newExercise);
 
     let newFakeState = fakeState + 1;
     setFakeState(newFakeState);
     
     setChartState(newChartState);
   }
-  const addFriends = () => {
+
+  const addVeg = () => {
     let newChartState = chartState;
     //todo need to not hardcode .data[whatever]
-    let newFriends = newChartState.datasets[0].data[5] + 1;
+    let newVeg = newChartState.datasets[0].data[4] + 1;
     //todo need to not hardcode .splice(firstNumber
-    newChartState.datasets[0].data.splice(5, 1, newFriends);
-
-    let newFakeState = fakeState + 1;
-    setFakeState(newFakeState);
-
-    setChartState(newChartState);
-  }
-  const addFamily = () => {
-    let newChartState = chartState;
-    //todo need to not hardcode .data[whatever]
-    let newFamily = newChartState.datasets[0].data[6] + 1;
-    //todo need to not hardcode .splice(firstNumber
-    newChartState.datasets[0].data.splice(6, 1, newFamily);
-
-    let newFakeState = fakeState + 1;
-    setFakeState(newFakeState);
-
-    setChartState(newChartState);
-  }
-  const addPartner = () => {
-    let newChartState = chartState;
-    //todo need to not hardcode .data[whatever]
-    let newPartner = newChartState.datasets[0].data[7] + 1;
-    //todo need to not hardcode .splice(firstNumber
-    newChartState.datasets[0].data.splice(7, 1, newPartner);
+    newChartState.datasets[0].data.splice(4, 1, newVeg);
 
     let newFakeState = fakeState + 1;
     setFakeState(newFakeState);
@@ -145,9 +122,46 @@ function Today() {
   const addGoOut = () => {
     let newChartState = chartState;
     //todo need to not hardcode .data[whatever]
-    let newGoOut = newChartState.datasets[0].data[8] + 1;
+    let newGoOut = newChartState.datasets[0].data[5] + 1;
     //todo need to not hardcode .splice(firstNumber
-    newChartState.datasets[0].data.splice(8, 1, newGoOut);
+    newChartState.datasets[0].data.splice(5, 1, newGoOut);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
+  }
+  
+  const addFriends = () => {
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newFriends = newChartState.datasets[0].data[6] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(6, 1, newFriends);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
+  }
+  const addFamily = () => {
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newFamily = newChartState.datasets[0].data[7] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(7, 1, newFamily);
+
+    let newFakeState = fakeState + 1;
+    setFakeState(newFakeState);
+
+    setChartState(newChartState);
+  }
+  const addPartner = () => {
+    let newChartState = chartState;
+    //todo need to not hardcode .data[whatever]
+    let newPartner = newChartState.datasets[0].data[8] + 1;
+    //todo need to not hardcode .splice(firstNumber
+    newChartState.datasets[0].data.splice(8, 1, newPartner);
 
     let newFakeState = fakeState + 1;
     setFakeState(newFakeState);
@@ -161,7 +175,7 @@ function Today() {
 
   return (
     <div>
-        <p>thing:{JSON.stringify(chartState.thing)}</p>
+        {/* <p>thing:{JSON.stringify(chartState.thing)}</p> */}
         {/* <p>chartState.datasets[0].data:{JSON.stringify(chartState.datasets[0].data)}</p> */}
         <Pie
           data={chartState} redraw
@@ -173,23 +187,41 @@ function Today() {
             },
             legend:{
               display:true,
+              labels: {
+                color: 'rgb(255, 99, 132)'
+              },
               position:'right'
+            },
+            plugins: {
+              datalabels: {
+                display: true,
+                formatter: (val, ctx) => {
+                  if (val>0){
+                    return ctx.chart.data.labels[ctx.dataIndex];
+                  } else {
+                    return "";
+                  }
+                },
+                color: '#36A2EB'
+              }
             }
           }}
         />
 
       <h1>TODAY</h1>
       
-      <Button onClick={almostNothing}>Thing Button</Button>
-      <Button onClick={addSleep}>Sleep: {chartState.datasets[0].data[0]}</Button>
-      <Button onClick={addWork}>Work: {chartState.datasets[0].data[1]}</Button>
-      <Button onClick={addProject}>Project: {chartState.datasets[0].data[2]}</Button>
-      <Button onClick={addVeg}>Veg: {chartState.datasets[0].data[3]}</Button>
-      <Button onClick={addExercise}>Exercise: {chartState.datasets[0].data[4]}</Button>
-      <Button onClick={addFriends}>Friends: {chartState.datasets[0].data[5]}</Button>
-      <Button onClick={addFamily}>Family: {chartState.datasets[0].data[6]}</Button>
-      <Button onClick={addPartner}>Partner: {chartState.datasets[0].data[7]}</Button>
-      <Button onClick={addGoOut}>Go Out: {chartState.datasets[0].data[8]}</Button>
+      {/* <Button onClick={almostNothing} style={{backgroundColor: colors.sleep}}>Thing Button</Button> */}
+      <Button onClick={addSleep} style={{backgroundColor: colors.sleep}}>Sleep: {chartState.datasets[0].data[0]}</Button>
+      <Button onClick={addWork} style={{backgroundColor: colors.work}}>Work: {chartState.datasets[0].data[1]}</Button>
+    
+      <Button onClick={addProject} style={{backgroundColor: colors.project}}>Project: {chartState.datasets[0].data[2]}</Button>
+      <Button onClick={addExercise} style={{backgroundColor: colors.exercise}}>Exercise: {chartState.datasets[0].data[4]}</Button>
+      <Button onClick={addVeg} style={{backgroundColor: colors.veg}}>Veg: {chartState.datasets[0].data[3]}</Button>
+      <Button onClick={addGoOut} style={{backgroundColor: colors.goOut}}>Go Out: {chartState.datasets[0].data[8]}</Button>
+
+      <Button onClick={addFriends} style={{backgroundColor: colors.friends}}>Friends: {chartState.datasets[0].data[5]}</Button>
+      <Button onClick={addFamily} style={{backgroundColor: colors.family}}>Family: {chartState.datasets[0].data[6]}</Button>
+      <Button onClick={addPartner} style={{backgroundColor: colors.partner}}>Partner: {chartState.datasets[0].data[7]}</Button>
 
       <br>
       </br> 
