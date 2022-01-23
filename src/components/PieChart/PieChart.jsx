@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function Pie() {
+function PieChart() {
 
   return (
     <div>
@@ -10,4 +10,4 @@ function Pie() {
   );
 }
 
-export default Pie;
+export default PieChart;

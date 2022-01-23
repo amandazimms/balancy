@@ -5,8 +5,16 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #ddecec;
+  background-color: #FFC800;
   overflow: hidden;
+
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  padding: 3px;
+
+  z-index: 100;
 }
 
 .nav a {
@@ -16,15 +24,15 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: rgb(117, 117, 117);
+  color: #01295F;
   padding-left: 10px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: rgb(117, 117, 117);
-  background-color: #ddecec;
+  color: #01295F;
+  background-color: #FFC800;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;

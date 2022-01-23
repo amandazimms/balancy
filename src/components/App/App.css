@@ -7,6 +7,9 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  background-color: #fffbef;
+
+  padding-top: 70px;
 }
 
 img {
@@ -25,13 +28,10 @@ Container
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
-
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
-  border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border: none;
   background-color: #bcc6c7;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -76,6 +76,13 @@ Button
   color: #008183;
 }
 
+.btnLogger {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+}
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -109,4 +116,30 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+
+.starRatingStar {
+  width: 45px;
+  padding: 2px;
+}
+
+.starRating {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* --------------------------------------------------------------------------------
+Flex Containers
+-------------------------------------------------------------------------------- */
+
+.flexCenter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
 }

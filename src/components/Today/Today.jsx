@@ -4,29 +4,15 @@ import Button from 'react-bootstrap/Button';
 import {Line, Pie} from 'react-chartjs-2'
 import {Chart, ArcElement} from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import StarRating from '../StarRating/StarRating';
 Chart.register(ArcElement);
 Chart.register(ChartDataLabels);
 
 function Today() {
 
-  // pink and purple
-  // const colors = {
-  //   sleep: '#AE2EE8', work: '#6919B3', 
-  //   project: '#7930F2', exercise: '#4020D3', veg: '#5C53DF', goOut: '#202BAC',
-  //   friends: '#4069F2', family: '#0C54C0', partner: '#2C93EB' 
-  // }
-
-  // //range 1
-  // const colors = {
-  //   sleep: '#003D3A', work: '#218380', 
-  //   project: '#85FFC7', exercise: '#8F2D56', veg: '#C6FFF6', goOut: '#BD0E23',
-  //   friends: '#CF6629', family: '#FFB43B', partner: '#FFDD35' 
-  // }
-
-  //70s rainbow
   const colors = {
     sleep: '#01295F', work: '#437F97', 
-    project: '#849324', exercise: '#CAA71B', veg: '#FFB30F', goOut: '#FF7B0F',
+    project: '#849324', exercise: '#CAA71B', veg: '#FFC800', goOut: '#FF7B0F',
     friends: '#CE1218', family: '#882134', partner: '#522A5C' 
   }
 
@@ -177,6 +163,8 @@ function Today() {
     <div>
         {/* <p>thing:{JSON.stringify(chartState.thing)}</p> */}
         {/* <p>chartState.datasets[0].data:{JSON.stringify(chartState.datasets[0].data)}</p> */}
+        <h1>TODAY</h1>
+
         <Pie
           data={chartState} redraw
           options={{
@@ -204,30 +192,29 @@ function Today() {
                 },
                 color: '#36A2EB'
               }
+            },
+            animation: {
+              duration: 0
             }
           }}
         />
-
-      <h1>TODAY</h1>
       
-      {/* <Button onClick={almostNothing} style={{backgroundColor: colors.sleep}}>Thing Button</Button> */}
-      <Button onClick={addSleep} style={{backgroundColor: colors.sleep}}>Sleep: {chartState.datasets[0].data[0]}</Button>
-      <Button onClick={addWork} style={{backgroundColor: colors.work}}>Work: {chartState.datasets[0].data[1]}</Button>
-    
-      <Button onClick={addProject} style={{backgroundColor: colors.project}}>Project: {chartState.datasets[0].data[2]}</Button>
-      <Button onClick={addExercise} style={{backgroundColor: colors.exercise}}>Exercise: {chartState.datasets[0].data[4]}</Button>
-      <Button onClick={addVeg} style={{backgroundColor: colors.veg}}>Veg: {chartState.datasets[0].data[3]}</Button>
-      <Button onClick={addGoOut} style={{backgroundColor: colors.goOut}}>Go Out: {chartState.datasets[0].data[8]}</Button>
+        <StarRating/>
 
-      <Button onClick={addFriends} style={{backgroundColor: colors.friends}}>Friends: {chartState.datasets[0].data[5]}</Button>
-      <Button onClick={addFamily} style={{backgroundColor: colors.family}}>Family: {chartState.datasets[0].data[6]}</Button>
-      <Button onClick={addPartner} style={{backgroundColor: colors.partner}}>Partner: {chartState.datasets[0].data[7]}</Button>
+        <div className='flexCenter'> 
+          {/* <Button onClick={almostNothing} style={{backgroundColor: colors.sleep}}>Thing Button</Button> */}
+          <Button className='btnLogger' onClick={addSleep} style={{backgroundColor: colors.sleep}}>Sleep: {chartState.datasets[0].data[0]}</Button>
+          <Button className='btnLogger' onClick={addWork} style={{backgroundColor: colors.work}}>Work: {chartState.datasets[0].data[1]}</Button>
+        
+          <Button className='btnLogger' onClick={addProject} style={{backgroundColor: colors.project}}>Project: {chartState.datasets[0].data[2]}</Button>
+          <Button className='btnLogger' onClick={addExercise} style={{backgroundColor: colors.exercise}}>Exercise: {chartState.datasets[0].data[3]}</Button>
+          <Button className='btnLogger' onClick={addVeg} style={{backgroundColor: colors.veg}}>Veg: {chartState.datasets[0].data[4]}</Button>
+          <Button className='btnLogger' onClick={addGoOut} style={{backgroundColor: colors.goOut}}>Go Out: {chartState.datasets[0].data[5]}</Button>
 
-      <br>
-      </br> 
-
-      <button onClick={showTotals}>Show total counts in console</button>
-
+          <Button className='btnLogger' onClick={addFriends} style={{backgroundColor: colors.friends}}>Friends: {chartState.datasets[0].data[6]}</Button>
+          <Button className='btnLogger' onClick={addFamily} style={{backgroundColor: colors.family}}>Family: {chartState.datasets[0].data[7]}</Button>
+          <Button className='btnLogger' onClick={addPartner} style={{backgroundColor: colors.partner}}>Partner: {chartState.datasets[0].data[8]}</Button>
+        </div>       
     </div>
   );
 }
