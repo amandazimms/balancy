@@ -8,3 +8,19 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "entry" (
+    "id" SERIAL PRIMARY KEY,
+    "sleep" int NOT NULL DEFAULT 0,
+    "work" int NOT NULL DEFAULT 0,
+    "project" int NOT NULL DEFAULT 0,
+    "exercise" int NOT NULL DEFAULT 0,
+    "veg_out" int NOT NULL DEFAULT 0,
+    "go_out" int NOT NULL DEFAULT 0,
+    "friends" int NOT NULL DEFAULT 0,
+    "family" int NOT NULL DEFAULT 0,
+    "partner" int NOT NULL DEFAULT 0,
+    "rating" int NOT NULL DEFAULT 1,
+    "date" date NOT NULL DEFAULT now(),
+    "user_id" int REFERENCES "user" (id) ON DELETE CASCADE
+);
