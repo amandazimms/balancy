@@ -4,16 +4,24 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
+  margin: 0;
   background-color: #FFC800;
   overflow: hidden;
 
+  /* border-bottom: 3px #fffbef;
+  border-bottom-style: solid; */
+  border-bottom: 3px solid #fffbef;
+  background-clip: padding-box;
+
   overflow: hidden;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  right: 0;
   padding: 3px;
 
+  height: 50px; 
+  
   z-index: 100;
 }
 

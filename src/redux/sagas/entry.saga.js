@@ -11,7 +11,7 @@ function* getTodaysEntry(action) {
   try {
     const todaysEntry = yield axios.get('/api/entry/today', { params: {user_id: ap.user_id} } );
 
-    console.log('todaysEntry.data:', todaysEntry.data);
+    yield put({ type: 'SET_CURRENT_ENTRY', payload: todaysEntry.data });    
 
   } catch (error) {
     console.log('Error with check and add entry:', error);

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import RegisterForm from '../RegisterForm/RegisterForm';
 import Button from 'react-bootstrap/Button';
 import {Line, Pie} from 'react-chartjs-2'
 import {Chart, ArcElement} from 'chart.js'
@@ -11,29 +10,29 @@ Chart.register(ChartDataLabels);
 
 function Today() {
 
+  const dispatch = useDispatch();
   const user = useSelector(store => store.user);
+  const currentEntry = useSelector(store => store.currentEntry);
   
   const colors = {
     sleep: '#01295F', work: '#437F97', 
-    project: '#849324', exercise: '#CAA71B', veg: '#FFC800', goOut: '#FF7B0F',
+    project: '#849324', exercise: '#CAA71B', vegOut: '#FFC800', goOut: '#FF7B0F',
     friends: '#CE1218', family: '#882134', partner: '#522A5C' 
   }
+
+  const [fakeState, setFakeState] = useState(0);  
 
   const [chartState, setChartState] = useState({
       thing: ["t","h","i","n","g"],
       // todo delete ^ - for test only
-      labels: ['Sleep','Work','Project','Exercise','Veg','Go Out','Friends','Family','Partner'],
+      labels: ['Sleep','Work','Project','Exercise','Veg Out','Go Out','Friends','Family','Partner'],
       datasets: [ { label: 'TODAY',
-                    backgroundColor: [colors.sleep, colors.work, colors.project, colors.exercise, colors.veg, colors.goOut, colors.friends, colors.family, colors.partner],
+                    backgroundColor: [colors.sleep, colors.work, colors.project, colors.exercise, colors.vegOut, colors.goOut, colors.friends, colors.family, colors.partner],
                     hoverBackgroundColor: [colors.sleep, colors.work, colors.project, colors.exercise, colors.veg, colors.goOut, colors.friends, colors.family, colors.partner],
-                    data: [0,0,0,0,0,0,0,0,0],
+                    data: [currentEntry.sleep, currentEntry.work, currentEntry.project, currentEntry.exercise, currentEntry.veg_out, currentEntry.go_out, currentEntry.friends, currentEntry.family, currentEntry.partner],
                     datalabels: { color: '#000'}
                 } ]
       });
-      
-  const [fakeState, setFakeState] = useState(0);  
-
-  const dispatch = useDispatch();
 
   useEffect(  () => {
     dispatch({ type: 'GET_TODAYS_ENTRY', payload: {user_id: user.id} });
@@ -52,6 +51,7 @@ function Today() {
 
   }
 
+  //#region  addActivity Methods
   const addSleep = () => {
     let newChartState = chartState;
     let newSleep = newChartState.datasets[0].data[0] + 1;
@@ -65,7 +65,7 @@ function Today() {
     setFakeState(newFakeState);
 
     // console.log('chartState.datasets[0].data:', chartState.datasets[0].data);
-   // console.log('fakeState:', fakeState);
+    // console.log('fakeState:', fakeState);
   }
   const addWork = () => {
     let newChartState = chartState;
@@ -165,6 +165,7 @@ function Today() {
 
     setChartState(newChartState);
   }
+  //#endregion
 
   const showTotals = () => {
     console.log('chart state:', chartState);
@@ -174,6 +175,7 @@ function Today() {
     <div>
         {/* <p>thing:{JSON.stringify(chartState.thing)}</p> */}
         {/* <p>chartState.datasets[0].data:{JSON.stringify(chartState.datasets[0].data)}</p> */}
+        {/* <p>{JSON.stringify(currentEntry)}</p> */}
         <h1>TODAY</h1>
 
         <Pie
@@ -219,7 +221,7 @@ function Today() {
         
           <Button className='btnLogger' onClick={addProject} style={{backgroundColor: colors.project}}>Project: {chartState.datasets[0].data[2]}</Button>
           <Button className='btnLogger' onClick={addExercise} style={{backgroundColor: colors.exercise}}>Exercise: {chartState.datasets[0].data[3]}</Button>
-          <Button className='btnLogger' onClick={addVeg} style={{backgroundColor: colors.veg}}>Veg: {chartState.datasets[0].data[4]}</Button>
+          <Button className='btnLogger' onClick={addVeg} style={{backgroundColor: colors.vegOut}}>Veg Out: {chartState.datasets[0].data[4]}</Button>
           <Button className='btnLogger' onClick={addGoOut} style={{backgroundColor: colors.goOut}}>Go Out: {chartState.datasets[0].data[5]}</Button>
 
           <Button className='btnLogger' onClick={addFriends} style={{backgroundColor: colors.friends}}>Friends: {chartState.datasets[0].data[6]}</Button>

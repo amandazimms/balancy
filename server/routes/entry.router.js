@@ -12,9 +12,8 @@ router.get('/today', (req, res) => {
 
   pool.query(queryString)
     .then((results)=>{
-      if (results.rows.length === 0){
-        console.log('there was no entry  - creating one');
-        //if there is no entry today, post one
+      
+      if (results.rows.length === 0){//if there is no entry today, post one
           const queryString = `INSERT INTO "entry" ("date", "user_id")
             VALUES (NOW(), $1) RETURNING id`;
             values = [req.body.user_id];
@@ -30,9 +29,8 @@ router.get('/today', (req, res) => {
 
           });
 
-      } else {
-        console.log('heres the existing entry');
-        //else, send the entry for today that already exists
+      } 
+      else {//else, send the entry for today that already exists
           //results.rows should only have 1 entry as only one is allowed, hence sending rows[0]
         res.send(results.rows[0]);
       }

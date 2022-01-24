@@ -1,8 +1,8 @@
-const entryReducer = (state = {}, action) => {
+const currentEntryReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_ENTRY':
+    case 'SET_CURRENT_ENTRY':
       return action.payload;
-    case 'UNSET_ENTRY':
+    case 'UNSET_CURRENT_ENTRY':
       return {};
     default:
       return state;
@@ -10,4 +10,4 @@ const entryReducer = (state = {}, action) => {
 };
 
 
-export default entryReducer;
+export default currentEntryReducer;

@@ -20,6 +20,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Today from '../Today/Today';
 
 import './App.css';
+import AboutPage from '../AboutPage/AboutPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,10 @@ function App() {
             <Today />
           </ProtectedRoute>
 
+          {/* logged in shows Today page, else shows LoginPage */}
+          <ProtectedRoute exact path="/about">
+            <AboutPage />
+          </ProtectedRoute>     
 
           <Route exact path="/login">
             {user.id ?
