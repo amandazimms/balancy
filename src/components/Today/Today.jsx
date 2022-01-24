@@ -212,7 +212,7 @@ function Today() {
           }}
         />
       
-        <StarRating/>
+        <StarRating rating={currentEntry.rating}/>
 
         <div className='flexCenter'> 
           {/* <Button onClick={almostNothing} style={{backgroundColor: colors.sleep}}>Thing Button</Button> */}

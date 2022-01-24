@@ -5,7 +5,7 @@ function StarRating(props) {
 
   const currentEntry = useSelector(store => store.currentEntry);
 
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(props.rating);
 
   const images = {
     white: './images/StarWhite.png',
@@ -13,6 +13,10 @@ function StarRating(props) {
   }
 
   const [paths, setPaths] = useState( [images.yellow, images.white, images.white, images.white, images.white] );
+  
+  useEffect(() => {
+    updateRating(props.rating);
+  }, []);
   
   const updateRating = (_rating) => {
     console.log('updating rating to:', _rating);
