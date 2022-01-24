@@ -35,7 +35,7 @@ function Today() {
       });
 
   useEffect(  () => {
-    dispatch({ type: 'GET_TODAYS_ENTRY', payload: {user_id: user.id} });
+    dispatch({ type: 'FETCH_TODAYS_ENTRY', payload: {user_id: user.id} });
 
   }, []);
   

@@ -49,7 +49,25 @@ router.post('/', (req, res) => {
   // console.log('----> in entry router POST, req.params:', req.params);
 });
 
-router.put('/', (req, res) => {
+router.put('/today-rating/:id', (req, res) => {
+  // console.log('----> in entry router today-rating PUT, req.body:', req.body);
+  // console.log('----> in entry router today-rating PUT, req.query:', req.query);
+  // console.log('----> in entry router today-rating PUT, req.params:', req.params);
+
+  //req.body.rating is the new rating
+  //req.params.id is entry id
+  const queryString = `UPDATE "entry" 
+      SET "rating"=$1
+      WHERE id=${req.params.id}`;
+  values = [req.body.rating]; 
+  
+  pool.query(queryString, values)
+    .then( (results) => {
+      res.sendStatus(200);
+    
+    }).catch((err) => {
+      console.log("PUT today rating failed, err:", err);
+    });
 
 });
 

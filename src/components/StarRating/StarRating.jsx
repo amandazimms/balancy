@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function StarRating(props) {
 
+  const dispatch = useDispatch();
   const currentEntry = useSelector(store => store.currentEntry);
+  const user = useSelector(store => store.user);
 
   const [rating, setRating] = useState(props.rating);
 
@@ -12,34 +14,40 @@ function StarRating(props) {
     yellow: './images/StarYellow.png'
   }
 
-  const [paths, setPaths] = useState( [images.yellow, images.white, images.white, images.white, images.white] );
+  const [imagePaths, setImagePaths] = useState( [images.yellow, images.white, images.white, images.white, images.white] );
   
   useEffect(() => {
-    updateRating(props.rating);
+    updateRatingImages(props.rating);
   }, []);
   
   const updateRating = (_rating) => {
-    console.log('updating rating to:', _rating);
+    //updates the actual rating, and sends it to DB
+    setRating(_rating);
+    updateRatingImages(_rating);
 
-    let newPaths = [];
+    dispatch({ type:'UPDATE_RATING', payload: {rating: _rating, entry_id: currentEntry.id, user_id: user.id} });
+  }
+
+  const updateRatingImages = (_rating) => {
+    //updates the star images to yellow/white, to match the number of rating
+    let newImagePaths = [];
     for (let i=1; i<=_rating; i++){
-      newPaths.push(images.yellow);
+      newImagePaths.push(images.yellow);
     }
 
     for (let i=_rating+1; i<=5; i++){
-      newPaths.push(images.white);
+      newImagePaths.push(images.white);
     }
-    setPaths(newPaths);
-    setRating(_rating);
+    setImagePaths(newImagePaths);
   }
 
   return (
     <div className='starRating'>
-      <img onClick={ () => updateRating(1) } className='starRatingStar' src={paths[0]}/>
-      <img onClick={ () => updateRating(2) } className='starRatingStar' src={paths[1]}/>
-      <img onClick={ () => updateRating(3) } className='starRatingStar' src={paths[2]}/>
-      <img onClick={ () => updateRating(4) } className='starRatingStar' src={paths[3]}/>
-      <img onClick={ () => updateRating(5) } className='starRatingStar' src={paths[4]}/>
+      <img onClick={ () => updateRating(1) } className='starRatingStar' src={imagePaths[0]}/>
+      <img onClick={ () => updateRating(2) } className='starRatingStar' src={imagePaths[1]}/>
+      <img onClick={ () => updateRating(3) } className='starRatingStar' src={imagePaths[2]}/>
+      <img onClick={ () => updateRating(4) } className='starRatingStar' src={imagePaths[3]}/>
+      <img onClick={ () => updateRating(5) } className='starRatingStar' src={imagePaths[4]}/>
     </div>
   );
 }
